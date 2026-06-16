@@ -3,61 +3,363 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>김은지</title>
+    <title>EunJi Portfolio</title>
     <style>
-        *{margin: 0; padding: 0;}
-
-        header{
-            text-align: center;
-            margin-bottom: 20px;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        section{text-align: center;}
+        html {
+            scroll-behavior: smooth;
+        }
 
-        section>div
-        {
-            display: inline-block;
-            width: 300px;
-            border: 1px solid lightgray;
-            border-radius: 8px;
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            background-color: #ffffff;
+            color: #1a1a1a;
+            line-height: 1.6;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: 2.25rem;
+            line-height: 1.2;
+            margin-bottom: 2rem;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: #4b5563;
+        }
+
+        a {
+            color: #2563eb;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #1d47ad;
+        }
+
+        /* Layout */
+        .container {
+            max-width: 1200px;
             margin: 0 auto;
-            margin-left: 5px;
-            /* background-color: red; */
+            padding: 0 2rem;
         }
 
-        .ml
-        {
-            margin-left: 5px;
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1.5rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.75rem;
+            }
         }
 
-        a{text-decoration: none;
-        color: black;}
-        
+        /* Header & Navigation */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+            transition: color 0.3s ease;
+        }
+
+        .logo:hover {
+            color: #2563eb;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: #1a1a1a;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #2563eb;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 1.5rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 6rem 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .hero h1 {
+            color: #1a1a1a;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero p {
+            font-size: 1.125rem;
+            color: #4b5563;
+            max-width: 600px;
+            line-height: 1.7;
+        }
+
+        /* CTA Button */
+        .cta {
+            display: inline-block;
+            padding: 0.875rem 2rem;
+            background-color: #2563eb;
+            color: white;
+            border-radius: 6px;
+            font-weight: 500;
+            margin-top: 2rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .cta:hover {
+            background-color: #1d47ad;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(37, 99, 235, 0.2);
+        }
+
+        /* Section Spacing */
+        section {
+            padding: 4rem 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        section:last-of-type {
+            border-bottom: none;
+        }
+
+        /* Grid Layout */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2.5rem;
+        }
+
+        .card {
+            padding: 2rem;
+            background-color: #f9fafb;
+            border-radius: 8px;
+            border: 1px solid #e5e7eb;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            border-color: #2563eb;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.1);
+            transform: translateY(-4px);
+        }
+
+        .card h3 {
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #1a1a1a;
+            color: #e5e7eb;
+            padding: 3rem 0;
+            margin-top: 2rem;
+        }
+
+        footer .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-content {
+            display: flex;
+            gap: 4rem;
+        }
+
+        .footer-section h4 {
+            color: white;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: #9ca3af;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #2563eb;
+        }
+
+        .footer-credit {
+            font-size: 0.85rem;
+            color: #6b7280;
+        }
+
+        @media (max-width: 768px) {
+            footer .container {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 2rem;
+                width: 100%;
+            }
+
+            .hero {
+                padding: 4rem 0;
+            }
+
+            section {
+                padding: 3rem 0;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Utility Classes */
+        .subtle-text {
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+
+        .accent-color {
+            color: #2563eb;
+        }
+
+        .divider {
+            height: 1px;
+            background-color: #e5e7eb;
+            margin: 3rem 0;
+        }
+
+        /* Focus States */
+        a:focus-visible,
+        button:focus-visible {
+            outline: 2px solid #2563eb;
+            outline-offset: 4px;
+            border-radius: 2px;
+        }
+
+        /* Reduced Motion */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="total">
-        <header>
-            <h2><a href="https://eunji0066.github.io/html/flexEx.html">김은지의 홈페이지</a></h3></div>
-            
-            
-        </header>
+    <header>
+        <nav class="container">
+            <div class="logo">Your Name</div>
+            <ul class="nav-links">
+                <li><a href="#work">작업</a></li>
+                <li><a href="#about">소개</a></li>
+                <li><a href="#contact">연락처</a></li>
+            </ul>
+        </nav>
+    </header>
 
-        <section>
-            <div id="div1"><b>유한대학교 컴퓨터공학과<br>게임콘텐츠전공</b><br><a href="https://vr.yuhan.ac.kr/index.do">클릭하세요~</a></div>
-            <div id="div2" class="ml"><b>z인덱스 실습</b><br><a href="https://eunji0066.github.io/html/zindex.html">클릭하세요~</a></div>
-            <div id="div3" class="ml"><b>flex 캐릭터 배치 실습</b><br><a href="boxText_Luke.html">클릭하세요~</div>
-        </section>
-            <section>
-            <div id="div4"><b>유한대학교 컴퓨터공학과<br>게임콘텐츠전공</b><br>클릭하세요~</div>
-            <div id="div5" class="ml"><b>티몬 홈페이지</b><br>클릭하세요~</div>
-            <div id="div6" class="ml"><b>티몬 홈페이지</b><br>클릭하세요~</div>
-        </section>
-            <section>
-            <div id="div7"><b>유한대학교 컴퓨터공학과<br>게임콘텐츠전공</b><br>클릭하세요~</div>
-            <div id="div8" class="ml"><b>티몬 홈페이지</b><br>클릭하세요~</div>
-            <div id="div9" class="ml"><b>티몬 홈페이지</b><br>클릭하세요~</div>
-        </section>
+    <section id="work">
+    <div class="container">
+        <h2>주요 작업</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>유한대학교 컴퓨터공학과 게임콘텐츠전공</h3>
+                <a href="https://vr.yuhan.ac.kr/index.do">클릭하세요!</a>
+            </div>
+        <div class="card">
+                <h3>z인덱스 실습</h3>
+                <a href="https://eunji0066.github.io/html/zindex.html">클릭하세요!</a>
+        </div>
+        <div class="card">
+                <h3>flex 캐릭터 배치</h3>
+                <a href="boxText_Luke.html">클릭하세요!</a>
+        </div>
     </div>
+</section>
+    
 </body>
 </html>
